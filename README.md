@@ -1,4 +1,4 @@
-# Excel Scrapper to Python List
+# Excel to Python List
 Using it, you can extract data from complex tables in Excel into a list.
 
 ## Setup Environment
