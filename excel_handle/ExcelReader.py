@@ -6,17 +6,8 @@ from openpyxl.cell.cell import Cell, MergedCell
 from .schema import SourceFieldMeta, GroupLevel
 from typing import Any, List, Tuple, Union
 
-print("Hii")
-# book = load_workbook('C://Users//BhargavaTanguturi//Downloads//Audit Application Test Data For General Journal.xlsx')
-# sheet = book.active
-
-# rows = sheet.rows
-# # print(len(rows))
-# for a in rows:
-#     print(a)
-
 class MyExcelReader():
-    def __init__(self, filename:str, aFieldStr:List[SourceFieldMeta]): #'C://Users//BhargavaTanguturi//Downloads//Audit Application Test Data For General Journal.xlsx'
+    def __init__(self, filename:str, aFieldStr:List[SourceFieldMeta]): #'C://Users//BhargavaTanguturi//Downloads//Journal.xlsx'
         self._book:Workbook = load_workbook(filename)
         self._aFieldStr = aFieldStr
     
@@ -159,10 +150,6 @@ class MyExcelReader():
                 group_record[fld.AliasName] = sCellValue
         
         return (group_record, bInValidData)
-    # elif not oLevel["Level"] in aRecordByLevels: # grouped fields data already prepapred yet
-    #     group_record = {}
-    #     for fld in oLevel["Fields"]:
-    #         group_record[fld.SourceFieldName] = None
     
         
         
@@ -173,27 +160,14 @@ class MyExcelReader():
         (aGroupedFieldsAsForm, aGroupedFields, aFlatFields) = self._separate_fields(aCollectedFields)
         aData= []
         oField:SourceFieldMeta
-        # oGroupField:SourceFieldMeta
-        # fld:SourceFieldMeta
-        # aGroupLevels = []
         oLevel:GroupLevel
-        # aGroupLevelWithFieldShouldBe = []
-        # aGroupLevelWithFieldShouldBe.append({"Level":0, "Field":None}) # Grouped as Form Key
         oFormLevel = self.prepare_first_level_form_fields(aGroupedFieldsAsForm)
         bIncludeFormGroup = True if oFormLevel.FirstField is not None else False 
         
         aFieldsByGroupLevel = self.prepare_grouped_fields_by_level(aGroupedFields)
         oLastLevel= self.prepare_last_level_fields(aFlatFields, nGroupedLevelsCount=len(aFieldsByGroupLevel))
 
-
-            # if not _find_record(aGroupLevelWithFieldShouldBe, "Level", oGroupField.GroupedLevel):
-            #     aGroupLevelWithFieldShouldBe.append({"Level":oGroupField.GroupedLevel, "Field":oGroupField})
-            # if not oGroupField.GroupedLevel in aGroupLevels:
-            #     aGroupLevels.append(oGroupField.GroupedLevel)
-            # aFieldsByLevel.append(oLevel)
-
         aFieldsByGroupLevel.sort(key=lambda x: x.Level)
-        # aGroupLevels.sort()
         aRecordByLevels = {}
 
         bInvalidGroupLevelData = True
@@ -214,10 +188,6 @@ class MyExcelReader():
                 
                 if bFormStarted:
                     form_record = {**form_record, **self.collect_form_based_values(row=row, oFormLevel=oFormLevel)}
-                    # for oFormField in oFormLevel.Fields:
-                    #     sFieldName = row[oFormField.FieldNameIndex - 1].value
-                    #     if sFieldName == oFormField.SourceFieldName:
-                    #        form_record[oFormField.AliasName] = row[oFormField.FieldValueIndex - 1].value
                 
                 if oFormLevel.LastField and row[oFormLevel.LastField.FieldNameIndex -1].value == oFormLevel.LastField.SourceFieldName:
                     bFormEnd = True
@@ -250,18 +220,6 @@ class MyExcelReader():
                         # the field must have value at group level otherwise it's group level data
                         if oLevel.MustBeField and row[oLevel.MustBeField.FieldValueIndex - 1].value:  
                             (group_record, bInvalidGroupLevelData) =self.collect_row_group_based_values(row=row, oLevel=oLevel)
-                            # bInValidData = False
-                            # for fld in oLevel.Fields:
-                            #     sCellValue = row[fld.FieldValueIndex - 1].value
-                            #     if not sCellValue and fld.Required:
-                            #         bInValidData = True
-                            #     else:
-                            #         group_record[fld.AliasName] = sCellValue
-                            # bInvalidGroupLevelData = bInValidData
-                        # elif not oLevel["Level"] in aRecordByLevels: # grouped fields data already prepapred yet
-                        #     group_record = {}
-                        #     for fld in oLevel["Fields"]:
-                        #         group_record[fld.SourceFieldName] = None
                         
                             aRecordByLevels[oLevel.Level]= group_record
                 else:
@@ -270,17 +228,6 @@ class MyExcelReader():
                 if bInvalidGroupLevelData: # skip row due to missing or invalid data in grouped fields
                     continue # skip up to next valid group record
 
-                # for sLevel in aGroupLevels:
-                #     oShouldBeField = _find_record(aGroupLevelWithFieldShouldBe, "Level", sLevel)
-                #     if oShouldBeField and oShouldBeField["Field"]:
-                #         if row[oShouldBeField["Field"].FieldValueIndex - 1].value :
-                #             group_record = {}
-                #             for oGroupField in aGroupedFields:
-                #                 if oGroupField.GroupedLevel == sLevel:
-                #                     sCellValue = row[oGroupField.FieldValueIndex - 1].value
-                #                     if sCellValue:
-                #                         group_record[oGroupField.SourceFieldName] = sCellValue
-                #             aRecordByLevels[sLevel]= group_record
                 if oLastLevel:
                     if oLastLevel.MustBeField and row[oLastLevel.MustBeField.FieldValueIndex - 1].value:
                         for oField in oLastLevel.Fields:
