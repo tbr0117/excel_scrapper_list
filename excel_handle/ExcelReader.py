@@ -218,7 +218,11 @@ class MyExcelReader():
                 if aFieldsByGroupLevel:
                     for oLevel in aFieldsByGroupLevel: # collect grouped fields data order by level
                         # the field must have value at group level otherwise it's group level data
-                        if oLevel.MustBeField and row[oLevel.MustBeField.FieldValueIndex - 1].value:  
+                        # if value not exist that means it' would be empty so we need empty value as well
+                        if oLevel.MustBeField and ( row[oLevel.MustBeField.FieldValueIndex - 1].value or aRecordByLevels.get(oLevel.Level) is None):
+                            for nIndx in list(aRecordByLevels.keys()):
+                                if nIndx >= oLevel.Level:
+                                    del aRecordByLevels[nIndx]
                             (group_record, bInvalidGroupLevelData) =self.collect_row_group_based_values(row=row, oLevel=oLevel)
                         
                             aRecordByLevels[oLevel.Level]= group_record
