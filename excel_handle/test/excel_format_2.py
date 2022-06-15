@@ -22,14 +22,14 @@ aSourceFields: List[SourceFieldMeta] = []
 # ]
 
 aSourceFields = [
-    SourceFieldMeta(SourceFieldName="Date", AliasName="Date", Required=False, DataType=datetime.date, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False, ShouldBe=True ),
-    SourceFieldMeta(SourceFieldName="Num", AliasName="Num", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Name", AliasName="Name", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Memo/Description", AliasName="Memo/Description", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False ),
-    SourceFieldMeta(SourceFieldName="Account #", AliasName="Account #", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, ShouldBe=True),
-    SourceFieldMeta(SourceFieldName="Account", AliasName="Account", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Debit", AliasName="Debit", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Credit", AliasName="Credit", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
+    SourceFieldMeta(SourceFieldName="Date", AliasName="Date", Required=True, DataType=datetime.date, IsGrouped=True, GroupedLevel=1, ShouldBe=True ),
+    SourceFieldMeta(SourceFieldName="Num", AliasName="Num", DataType=str, IsGrouped=True, GroupedLevel=1 ),
+    SourceFieldMeta(SourceFieldName="Name", AliasName="Name", DataType=str, IsGrouped=True, GroupedLevel=1 ),
+    SourceFieldMeta(SourceFieldName="Memo/Description", AliasName="Memo/Description", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Account #", AliasName="Account #", Required=True, DataType=str, ShouldBe=True),
+    SourceFieldMeta(SourceFieldName="Account", AliasName="Account", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Debit", AliasName="Debit", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Credit", AliasName="Credit", DataType=str ),
 ]
 
 # C://Users//BhargavaTanguturi//Downloads//Audit Application Test Data For General Journal.xlsx

@@ -22,18 +22,18 @@ aSourceFields: List[SourceFieldMeta] = []
 # ]
 
 aSourceFields = [
-    SourceFieldMeta(SourceFieldName="Control", AliasName="Control", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False, ShouldBe=True ),
-    SourceFieldMeta(SourceFieldName="Batch", AliasName="Batch",  Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Period", AliasName="Period", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Date", AliasName="Date", Required=False, DataType=datetime.date, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False, ShouldBe=True ),
-    SourceFieldMeta(SourceFieldName="Book", AliasName="Book", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=True, GroupedLevel=1, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Property", AliasName="Property", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Account", AliasName="Account", Required=True, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False, ShouldBe=True ),
-    SourceFieldMeta(SourceFieldName="Debit", AliasName="Debit", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Credit", AliasName="Credit", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Reference", AliasName="Reference", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Source", AliasName="Source", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
-    SourceFieldMeta(SourceFieldName="Description", AliasName="Description", Required=False, DataType=str, DataConvertRequired=False, SourceDataFormat="", IsGrouped=False, GroupedAndHeaderAsForm=False ),
+    SourceFieldMeta(SourceFieldName="Control", AliasName="Control", DataType=str, IsGrouped=True, GroupedLevel=1, ShouldBe=True ),
+    SourceFieldMeta(SourceFieldName="Batch", AliasName="Batch", DataType=str, IsGrouped=True, GroupedLevel=1 ),
+    SourceFieldMeta(SourceFieldName="Period", AliasName="Period", DataType=str, IsGrouped=True, GroupedLevel=1 ),
+    SourceFieldMeta(SourceFieldName="Date", AliasName="Date", Required=True, DataType=datetime.date, IsGrouped=True, GroupedLevel=1, ShouldBe=True ),
+    SourceFieldMeta(SourceFieldName="Book", AliasName="Book", DataType=str, IsGrouped=True, GroupedLevel=1),
+    SourceFieldMeta(SourceFieldName="Property", AliasName="Property", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Account", AliasName="Account", Required=True, DataType=str, ShouldBe=True ),
+    SourceFieldMeta(SourceFieldName="Debit", AliasName="Debit", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Credit", AliasName="Credit", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Reference", AliasName="Reference", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Source", AliasName="Source", DataType=str ),
+    SourceFieldMeta(SourceFieldName="Description", AliasName="Description", DataType=str ),
 ]
 
 # C://Users//BhargavaTanguturi//Downloads//Audit Application Test Data For General Journal.xlsx
